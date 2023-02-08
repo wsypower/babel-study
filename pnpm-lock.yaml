@@ -19,6 +19,14 @@ importers:
       '@babel/preset-env': 7.20.2_@babel+core@7.20.5
       '@babel/template': 7.18.10
 
+  packages/babelCore:
+    specifiers:
+      '@babel/core': ^7.20.5
+      '@babel/preset-env': ^7.20.2
+    devDependencies:
+      '@babel/core': 7.20.5
+      '@babel/preset-env': 7.20.2_@babel+core@7.20.5
+
   packages/debugger:
     specifiers: {}
 
