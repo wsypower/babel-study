@@ -1,2 +1,2 @@
-const a = [1, 2, 3];
-a.at(-1);
+const a = [];
+a.fill(-1);
