@@ -1,0 +1,8 @@
+[production]
+chrome >= 44
+[development]
+last 1 chrome version
+last 1 firefox version
+[dd]
+last 2 chrome version
+last 2 firefox version
