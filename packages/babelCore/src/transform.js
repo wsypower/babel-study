@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: wsy
  * @Date: 2023-02-09 15:42:16
- * @LastEditTime: 2023-02-22 16:33:18
+ * @LastEditTime: 2023-02-22 16:48:43
  * @LastEditors: wsy
  */
 import babel from '@babel/core'
@@ -14,7 +14,7 @@ const filePath = require.resolve('./origin.js')
 
 const code = readFileSync(filePath, 'utf-8')
 
-const res = babel.loadOptions({
+const res = babel.loadPartialConfig({
   presets: [
     [
       "@babel/preset-env",
@@ -26,6 +26,19 @@ const res = babel.loadOptions({
     ],
   ],
 })
+
+// const res = babel.loadOptions({
+//   presets: [
+//     [
+//       "@babel/preset-env",
+//       {
+//         "useBuiltIns": "usage",
+//         "corejs": "3.22",
+//         "debug": true
+//       }
+//     ],
+//   ],
+// })
 
 console.log(res)
 
