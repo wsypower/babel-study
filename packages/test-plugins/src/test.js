@@ -2,13 +2,13 @@
  * @Description: 
  * @Author: wsy
  * @Date: 2023-03-01 15:18:50
- * @LastEditTime: 2023-03-06 16:24:09
+ * @LastEditTime: 2023-03-06 15:22:24
  * @LastEditors: wsy
  */
 const { declare } = require('@babel/helper-plugin-utils');
 const importModule = require('@babel/helper-module-imports');
 
-const autoTrackPlugin = declare((api, options, dirname) => {
+const test = declare((api, options, dirname) => {
   api.assertVersion(7);
 
   return {
@@ -27,26 +27,32 @@ const autoTrackPlugin = declare((api, options, dirname) => {
                 }
                 path.stop();
               }
+            },
+            ClassDeclaration(path) {
+              path.traverse({
+                ClassMethod(path) {
+              })
+              // console.log(path.node.kind)
             }
           });
           if (!state.trackerImportId) {
             state.trackerImportId = importModule.addDefault(path, 'tracker', {
-              nameHint: '123test'
+              nameHint: path.scope.generateUid('tracker')
             }).name;
-            // state.trackerAST = api.template.statement(`${state.trackerImportId}()`)();
+            state.trackerAST = api.template.statement(`${state.trackerImportId}()`)();
           }
         }
       },
       'ClassMethod|ArrowFunctionExpression|FunctionExpression|FunctionDeclaration'(path, state) {
-        // const bodyPath = path.get('body');
-        // if (bodyPath.isBlockStatement()) {
-        //   bodyPath.node.body.unshift(state.trackerAST);
-        // } else {
-        //   const ast = api.template.statement(`{${state.trackerImportId}();return PREV_BODY;}`)({ PREV_BODY: bodyPath.node });
-        //   bodyPath.replaceWith(ast);
-        // }
+        const bodyPath = path.get('body');
+        if (bodyPath.isBlockStatement()) {
+          bodyPath.node.body.unshift(state.trackerAST);
+        } else {
+          const ast = api.template.statement(`{${state.trackerImportId}();return PREV_BODY;}`)({ PREV_BODY: bodyPath.node });
+          bodyPath.replaceWith(ast);
+        }
       }
     }
   }
 });
-module.exports = autoTrackPlugin;
+module.exports = test;
