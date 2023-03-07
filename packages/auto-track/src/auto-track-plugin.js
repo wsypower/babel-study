@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: wsy
  * @Date: 2023-03-01 15:18:50
- * @LastEditTime: 2023-03-06 16:24:09
+ * @LastEditTime: 2023-03-07 16:00:05
  * @LastEditors: wsy
  */
 const { declare } = require('@babel/helper-plugin-utils');
@@ -31,20 +31,20 @@ const autoTrackPlugin = declare((api, options, dirname) => {
           });
           if (!state.trackerImportId) {
             state.trackerImportId = importModule.addDefault(path, 'tracker', {
-              nameHint: '123test'
+              nameHint: 'test'
             }).name;
-            // state.trackerAST = api.template.statement(`${state.trackerImportId}()`)();
+            state.trackerAST = api.template.statement(`${state.trackerImportId}()`)();
           }
         }
       },
       'ClassMethod|ArrowFunctionExpression|FunctionExpression|FunctionDeclaration'(path, state) {
-        // const bodyPath = path.get('body');
-        // if (bodyPath.isBlockStatement()) {
-        //   bodyPath.node.body.unshift(state.trackerAST);
-        // } else {
-        //   const ast = api.template.statement(`{${state.trackerImportId}();return PREV_BODY;}`)({ PREV_BODY: bodyPath.node });
-        //   bodyPath.replaceWith(ast);
-        // }
+        const bodyPath = path.get('body');
+        if (bodyPath.isBlockStatement()) {
+          bodyPath.node.body.unshift(state.trackerAST);
+        } else {
+          const ast = api.template.statement(`{${state.trackerImportId}();return PREV_BODY;}`)({ PREV_BODY: bodyPath.node });
+          bodyPath.replaceWith(ast);
+        }
       }
     }
   }
