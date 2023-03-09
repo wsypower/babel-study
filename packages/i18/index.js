@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: wsy
  * @Date: 2023-03-02 15:37:34
- * @LastEditTime: 2023-03-07 17:13:35
+ * @LastEditTime: 2023-03-08 15:04:46
  * @LastEditors: wsy
  */
 
@@ -17,13 +17,17 @@ const sourceCode = fs.readFileSync(path.join(__dirname, './src/sourceCode.js'), 
 });
 
 const ast = parser.parse(sourceCode, {
-  sourceType: 'unambiguous'
+  sourceType: 'unambiguous',
+  plugins: ['jsx']
 });
 
 const { code } = transformFromAstSync(ast, sourceCode, {
   plugins: [
     [
       autoI18N,
+      {
+        outputDir: path.resolve(__dirname, './output')
+      }
     ]
   ]
 });
