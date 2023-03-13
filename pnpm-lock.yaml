@@ -12,6 +12,7 @@ importers:
       '@babel/preset-env': ^7.20.2
       '@babel/template': ^7.18.10
       '@babel/traverse': ^7.20.5
+      doctrine: ^3.0.0
       fs-extra: ^11.1.0
     dependencies:
       '@babel/generator': 7.20.5
@@ -23,6 +24,7 @@ importers:
       '@babel/plugin-transform-runtime': 7.19.6_@babel+core@7.20.5
       '@babel/preset-env': 7.20.2_@babel+core@7.20.5
       '@babel/template': 7.18.10
+      doctrine: 3.0.0
       fs-extra: 11.1.0
 
   packages/babelCore:
@@ -1639,6 +1641,13 @@ packages:
         optional: true
     dependencies:
       ms: 2.1.2
+
+  /doctrine/3.0.0:
+    resolution: {integrity: sha512-yS+Q5i3hBf7GBkd4KG8a7eBNNWNGLTaEwwYWUijIYM7zrlYDM0BFXHjjPWlWZ1Rg7UaddZeIDmi9jF3HmqiQ2w==}
+    engines: {node: '>=6.0.0'}
+    dependencies:
+      esutils: 2.0.3
+    dev: true
 
   /electron-to-chromium/1.4.284:
     resolution: {integrity: sha512-M8WEXFuKXMYMVr45fo8mq0wUrrJHheiKZf6BArTKk9ZBYCKJEOU5H8cdWgDT+qCVZf7Na4lVUaZsA+h6uA9+PA==}
