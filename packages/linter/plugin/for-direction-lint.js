@@ -1,3 +1,10 @@
+/*
+ * @Description: 
+ * @Author: wsy
+ * @Date: 2023-03-16 15:19:25
+ * @LastEditTime: 2023-03-16 15:59:35
+ * @LastEditors: wsy
+ */
 const { declare } = require('@babel/helper-plugin-utils');
 
 const forDirectionLint = declare((api, options, dirname) => {

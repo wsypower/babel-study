@@ -10,7 +10,7 @@ const sourceCode = `
     var a = function hello() {
     hello = 123;
     };
-`;
+`; 
 
 const ast = parser.parse(sourceCode, {
     sourceType: 'unambiguous'
