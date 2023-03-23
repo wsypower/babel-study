@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: wsy
  * @Date: 2023-02-03 14:31:12
- * @LastEditTime: 2023-02-06 16:00:44
+ * @LastEditTime: 2023-03-20 15:40:45
  * @LastEditors: wsy
  */
 const parser = require('@babel/parser');
@@ -21,7 +21,7 @@ const ast = parser.parse(source);
 
 traverse(ast, {
   StringLiteral(path) {
-    console.log(path.scope.bindings);
+    console.log(path);
   }
 });
 
@@ -29,4 +29,4 @@ const { code, map } = generate(ast, {
   sourceMaps: true
 });
 
-// console.log(code);
+console.log(code);

@@ -9,12 +9,12 @@
       "request": "launch",
       "name": "babel",
       "skipFiles": [
-          "<node_internals>/**"
+        "<node_internals>/**"
       ],
       "console": "integratedTerminal",
       "program": "${workspaceFolder}/packages/debugger/src/index.js",
       "resolveSourceMapLocations": [
-        "${workspaceFolder}/node_modules/@babel/**/*",
+        "${workspaceFolder}/**",
       ]
     }
   ]
