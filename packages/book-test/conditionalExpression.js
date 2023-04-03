@@ -1,9 +1,15 @@
+/*
+ * @Description: 
+ * @Author: wsy
+ * @Date: 2023-03-28 16:33:00
+ * @LastEditTime: 2023-03-29 15:02:41
+ * @LastEditors: wsy
+ */
 const babel = require('@babel/core')
 
 
 const code = `
 if (x > 0) {
-  y = 1;
   y = 1;
 } else {
   y = -1;
