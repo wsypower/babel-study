@@ -1,8 +1,8 @@
 /*
  * @Description: 
  * @Author: wsy
- * @Date: 2023-04-03 18:04:01
- * @LastEditTime: 2023-04-04 15:35:23
+ * @Date: 2023-04-04 15:41:43
+ * @LastEditTime: 2023-04-04 15:41:50
  * @LastEditors: wsy
  */
 const { transform, types } = require('@babel/core')
@@ -20,6 +20,9 @@ transform(code, {
       visitor: {
         FunctionDeclaration(path) {
           console.log(path.is('body'))
+        },
+        Identifier(path) {
+          console.log(path.equals('name', 'a'))
         }
       }
     }
