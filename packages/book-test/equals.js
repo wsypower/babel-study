@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: wsy
  * @Date: 2023-04-04 15:41:43
- * @LastEditTime: 2023-04-04 15:41:50
+ * @LastEditTime: 2023-04-04 16:23:57
  * @LastEditors: wsy
  */
 const { transform, types } = require('@babel/core')
@@ -19,10 +19,13 @@ transform(code, {
     {
       visitor: {
         FunctionDeclaration(path) {
-          console.log(path.is('body'))
         },
         Identifier(path) {
-          console.log(path.equals('name', 'a'))
+          const isEqual = path.equals('name', 'a')
+          console.log(isEqual)
+          if (isEqual) {
+            console.log('------------', path.node.name)
+          }
         }
       }
     }
