@@ -2,17 +2,17 @@
  * @Description: 
  * @Author: wsy
  * @Date: 2023-04-06 14:52:53
- * @LastEditTime: 2023-04-12 16:06:35
+ * @LastEditTime: 2023-04-12 18:59:42
  * @LastEditors: wsy
  */
 const { transform, types: t } = require('@babel/core')
 
 const code = `
 function foo() {
-  const a = 3
-  const b = 1
-  const c = 1
-  const e = 1
+  var x = 1;
+  function bar() {
+    var y = 2;
+  }
 }
 `;
 
@@ -21,8 +21,9 @@ transform(code, {
   plugins: [
     {
       visitor: {
-        VariableDeclaration(path, state) {
-          path.set('key', 2)
+        FunctionDeclaration(path, state) {
+          console.log(path.getOutBindingIdentifiers())
+          path.stop()
         }
       }
     }
