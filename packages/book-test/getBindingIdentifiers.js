@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: wsy
  * @Date: 2023-04-06 14:52:53
- * @LastEditTime: 2023-04-12 18:59:42
+ * @LastEditTime: 2023-04-12 19:00:53
  * @LastEditors: wsy
  */
 const { transform, types: t } = require('@babel/core')
@@ -22,7 +22,7 @@ transform(code, {
     {
       visitor: {
         FunctionDeclaration(path, state) {
-          console.log(path.getOutBindingIdentifiers())
+          console.log(path.getOuterBindingIdentifiers())
           path.stop()
         }
       }
