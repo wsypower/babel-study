@@ -2,19 +2,16 @@
  * @Description: 
  * @Author: wsy
  * @Date: 2023-04-13 14:50:19
- * @LastEditTime: 2023-04-13 15:22:30
+ * @LastEditTime: 2023-04-13 16:36:03
  * @LastEditors: wsy
  */
 const { transform, types: t } = require('@babel/core')
 
 const code = `
 function foo() {
+  const a = 1
   function test(){
-    const x = 1;
-    const a = 2
-    const c = 3
-    function test2(){}
-    if(x=1){}
+    const c = 2;
   }
 }
 `;
@@ -24,10 +21,17 @@ transform(code, {
   plugins: [
     {
       visitor: {
-        VariableDeclarator(path, state) {
-          console.log(path.scope.parent)
-          path.stop()
-        },
+        FunctionDeclaration(path, state) {
+          const name = path.node.id.name
+          if (name === 'foo') {
+            const { scope } = path
+            scope.traverse(path.node, {
+              VariableDeclarator(path) {
+                console.log(path.node.id.name);
+              },
+            }, this);
+          }
+        }
       }
     }
   ]
