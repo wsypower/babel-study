@@ -1,15 +1,14 @@
 /*
  * @Description: 
  * @Author: wsy
- * @Date: 2023-04-06 14:52:53
- * @LastEditTime: 2023-04-20 14:48:05
+ * @Date: 2023-04-20 14:48:54
+ * @LastEditTime: 2023-04-20 16:17:22
  * @LastEditors: wsy
  */
 const { transform, types: t } = require('@babel/core')
 
 const code = `
 function foo() {
-  // this is a comment
   var x = 1;
   return x + y;
 }
